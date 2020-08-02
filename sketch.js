@@ -110,24 +110,12 @@ function draw() {
       fill(rgb(41, 241, 195));
       text("will distract you.You have to collect maximun O2 gases.",345,380);
       fill("yellow");
-      text("If you touch CO2 or SO2 then ",345,400);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      text("If you touch 2 CO2 or 2 SO2 then oe life will be deducted.",345,400);
+      fill(rgb(20,222,33));
+      text("After You earn 12 o2 then you will enter level 2..",350,420);
+      textSize(30);
+      fill("yellow");
+      text("SO GET READY!..",530,480);
 
       textSize(25);
       fill(255);
@@ -172,14 +160,14 @@ function draw() {
       //player.y = mouseY;
 
       if (keyWentDown(RIGHT_ARROW)) {
-         player.velocityX = 8
+         player.velocityX = 10
       }
       if (keyWentUp(RIGHT_ARROW)) {
          player.velocityX = 0
       }
 
       if (keyWentDown(LEFT_ARROW)) {
-         player.velocityX = -9
+         player.velocityX = -10
       }
 
       if (keyWentUp(LEFT_ARROW)) {
@@ -196,7 +184,7 @@ function draw() {
 
       for (var i = 0; i < so2.length; i++) {
          so2[i].display();
-         so2[i].moveGas3(0, 10);
+         so2[i].moveGas3(0, 8);
 
          if (so2[i].hit3(player)) {
             // console.log("player")
@@ -206,7 +194,7 @@ function draw() {
          }
       }
       //co2 is starting;;;
-      if (frameCount % 85 === 0) {
+      if (frameCount % 65 === 0) {
          gas2 = new Gas2(random(width), -10, 90, 100);
          c02.push(gas2)
       }
@@ -214,7 +202,7 @@ function draw() {
 
       for (var j = 0; j < c02.length; j++) {
          c02[j].display();
-         c02[j].moveGas2(0, 10)
+         c02[j].moveGas2(0, 7)
 
          if (c02[j].hit2(player)) {
             // console.log("player")
@@ -224,7 +212,7 @@ function draw() {
          }
       }
       //o2 is starting;;;;
-      if (frameCount % 20 === 0) {
+      if (frameCount % 30 === 0) {
          gas3 = new Gas(random(width), -10, 90, 100);
          o2.push(gas3)
       }
@@ -232,7 +220,7 @@ function draw() {
 
       for (var k = 0; k < o2.length; k++) {
          o2[k].display();
-         o2[k].moveGas(0, 10)
+         o2[k].moveGas(0, 8)
 
          if (o2[k].hit(player)) {
             // console.log("player")
@@ -290,14 +278,14 @@ function draw() {
       }*/
       drawSprites();
    }
-   if (score == 3 || mode == 2) {
+   if (score == 12|| mode == 2) {
       mode = 2;
       life = 10
       level2();
    }
 
    function level2() {
-      background(bg2)
+      background(bg3)
       if (level_status == false) {
          h1.visible = true;
          h2.visible = true;
@@ -327,7 +315,7 @@ function draw() {
       }
 
       //so2 is starting ;;
-      if (frameCount % 50 === 0) {
+      if (frameCount % 105 === 0) {
          gas = new Gas3(random(width), -10, 110, 120);
          //gases.push(gas)
          so2.push(gas)
@@ -336,7 +324,7 @@ function draw() {
 
       for (var i = 0; i < so2.length; i++) {
          so2[i].display();
-         so2[i].moveGas3(0, 26);
+         so2[i].moveGas3(0, 5);
 
          if (so2[i].hit3(player)) {
             // console.log("player")
@@ -346,7 +334,7 @@ function draw() {
          }
       }
       //co2 is starting;;;
-      if (frameCount % 40 === 0) {
+      if (frameCount % 950 === 0) {
          gas2 = new Gas2(random(width), -10, 110, 120);
          c02.push(gas2)
       }
@@ -354,7 +342,7 @@ function draw() {
 
       for (var j = 0; j < c02.length; j++) {
          c02[j].display();
-         c02[j].moveGas2(0, 25)
+         c02[j].moveGas2(0, 6)
 
          if (c02[j].hit2(player)) {
             // console.log("player")
@@ -364,7 +352,7 @@ function draw() {
          }
       }
       //o2 is starting;;;;
-      if (frameCount % 30 === 0) {
+      if (frameCount % 40 === 0) {
          gas3 = new Gas(random(width), -10, 110, 120);
          o2.push(gas3)
       }
@@ -372,7 +360,7 @@ function draw() {
 
       for (var k = 0; k < o2.length; k++) {
          o2[k].display();
-         o2[k].moveGas(0, 27)
+         o2[k].moveGas(0, 7)
 
          if (o2[k].hit(player)) {
             // console.log("player")
@@ -381,7 +369,7 @@ function draw() {
             s2.play();
          }
       }
-      if (score === 2) {
+      if (score === 15) {
          player.changeAnimation("happyimg", player_happyimg);
          player.scale = 2
       }
@@ -421,6 +409,13 @@ function draw() {
          life_level = 10;
 
       }
+      if(mode === 5){
+         background(bg2);
+      }
+      if(life === 0){
+         mode=5
+      }
+
       drawSprites()
 
    }
